@@ -28,20 +28,22 @@ export default function Register() {
         // update image and name function
           updateProfileNameImg(name, imgUrl)
             .then((data) => {
-              const userData = { email: data?.user.email };
+            //   const userData = { email: data?.user.email };
+            //   console.log(userData);
+              navigate("/")
 
-              fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userData),
-              })
-                .then((res) => res.json())
-                .then((d) => {
-                  localStorage.setItem("jwttoken", d.token);
-                  userSaveToDb(email,name)
-                });
+            //   fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
+            //     method: "POST",
+            //     headers: {
+            //       "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify(userData),
+            //   })
+            //     .then((res) => res.json())
+            //     .then((d) => {
+            //       localStorage.setItem("jwttoken", d.token);
+            //     //   userSaveToDb(email,name)
+            //     });
              
             })
             .catch((err) => {
@@ -60,6 +62,7 @@ export default function Register() {
       
   };
 
+    // eslint-disable-next-line no-unused-vars
     const userSaveToDb = (email,name) => {
           fetch(`${process.env.REACT_APP_API_URL2}/user`,{
             method:"POST",
