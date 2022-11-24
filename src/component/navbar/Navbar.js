@@ -2,14 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { BsMoon, BsSun } from "react-icons/bs";
 import {
-    Link,
-    NavLink,
-    useLocation,
-    useMatch,
-    useNavigate
+  Link,
+  NavLink,
+  useLocation,
+  useMatch,
+  useNavigate
 } from "react-router-dom";
-import logo from "../../assests/img/logo.jpg";
-import { authContext } from "../authentication/AuthContext";
+
+import { authContext } from "../../authentication/AuthContext";
 import "./navbar.css";
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -59,7 +59,7 @@ export default function Navbar() {
               <img
                 onClick={() => setActiveMenu("home")}
                 className="logo cursor-pointer"
-                src={logo}
+                src=""
                 alt="logo"
               />
             </NavLink>
