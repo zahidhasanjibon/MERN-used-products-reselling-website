@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AdminLayout from "../layout/AdminLayout";
 import Main from "../layout/Main";
 import CategoryDetails from "../pages/CategoryDetails";
+import MyOrders from "../pages/dashboard/buyers/MyOrders";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       children:[
 
         {path:"/dashboard/orders",
-        element:""
+        element:<MyOrders />
       },
       {path:"/dashboard/products",
       element:""
