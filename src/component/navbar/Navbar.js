@@ -11,6 +11,7 @@ import {
 import logo from "../../assests/img/attachment_109048124.png";
 
 import { authContext } from "../../authentication/AuthContext";
+import UseCheckUserRole from "../hook/useCheckuserRole";
 import "./navbar.css";
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +19,8 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState("home");
 
   const { user, isLoading, logOut } = useContext(authContext);
+
+  const [roleName] = UseCheckUserRole(user?.email)
 
   const { pathname } = useLocation();
   const match = useMatch(pathname.slice(1));
@@ -47,6 +50,20 @@ export default function Navbar() {
   const handleActiveMenu = (val) => {
     setActiveMenu(val);
   };
+
+    function  chooseDashboardPath () {
+      if(roleName === 'buyer') {
+        return "/dashboard/orders"
+      }else if(roleName === "seller"){
+        return "/dashboard/products"
+      } else if(roleName === 'admin'){
+        return "/dashboard/sellers"
+      }
+    }
+
+    const roleBasesDashboardPath  = chooseDashboardPath()
+
+
 
   return (
     <div className="container mx-auto">
@@ -90,34 +107,8 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              <li onClick={() => handleActiveMenu("courses")}>
-                <Link
-                  to="/courses"
-                  className={`${
-                    activeMenu === "courses" ? "active" : undefined
-                  }`}
-                >
-                  courses
-                </Link>
-              </li>
-              <li onClick={() => handleActiveMenu("course/checkout")}>
-                <Link
-                  to="/course/checkout"
-                  className={`${
-                    activeMenu === "course/checkout" ? "active" : undefined
-                  }`}
-                >
-                  orders
-                </Link>
-              </li>
-              <li onClick={() => handleActiveMenu("faq")}>
-                <Link
-                  to="/faq"
-                  className={`${activeMenu === "faq" ? "active" : undefined}`}
-                >
-                  FAQ
-                </Link>
-              </li>
+           
+          
               <li onClick={() => handleActiveMenu("blog")}>
                 <Link
                   to="/blog"
@@ -126,6 +117,20 @@ export default function Navbar() {
                   Blog
                 </Link>
               </li>
+          
+              {
+                user?.uid && (
+                  <li onClick={() => handleActiveMenu("dashboard")}>
+                <Link
+                  to={roleBasesDashboardPath}
+                  className={`${activeMenu === "dashboard" ? "active" : undefined}`}
+                >
+                  Dashboard
+                </Link>
+              </li>
+                )
+
+              }
             </ul>
           </div>
 
