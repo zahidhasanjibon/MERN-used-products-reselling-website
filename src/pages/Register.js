@@ -1,14 +1,29 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../authentication/AuthContext";
 
 export default function Register() {
   // const [imgPreview, setImgPreview] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [preview, setPreview] = useState("");
 
-  const { signUp, updateProfileNameImg,isLoading ,setIsLoading} = useContext(authContext);
+  const { signUp, updateProfileNameImg, isLoading, setIsLoading } =
+    useContext(authContext);
   const navigate = useNavigate();
 
+  const handleUplaodImg = (e) => {
+    const imgFile = e.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setPreview(reader.result);
+      }
+    };
+    reader.readAsDataURL(imgFile);
+  };
 
   // sign up functionality
 
@@ -18,66 +33,79 @@ export default function Register() {
     const form = e.target;
     const email = form.email.value;
     const name = form.name.value;
-    const imgUrl = form.imgurl.value;
     const password = form.password.value;
+    const role = form.role.value;
 
+    const img = form.img.files[0]
 
-    signUp(email, password)
-      .then(() => {
-        form.reset();
-        // update image and name function
-          updateProfileNameImg(name, imgUrl)
+    const formData = new FormData()
+    formData.append("image",img)
+
+    const imgbbApiUrl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMG_BB_API}`
+
+    fetch(imgbbApiUrl,{
+      method:"POST",
+      body:formData
+    })
+    .then(res => res.json())
+    .then((d) => {
+        
+      if(d.success){
+
+        const imgUrl = d?.url
+        signUp(email, password)
+        .then(() => {
+          form.reset();
+          // update image and name function
+          updateProfileNameImg(name,imgUrl)
             .then((data) => {
-            //   const userData = { email: data?.user.email };
-            //   console.log(userData);
-              navigate("/")
+                const userData = { email: data?.user.email };
 
-            //   fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
-            //     method: "POST",
-            //     headers: {
-            //       "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify(userData),
-            //   })
-            //     .then((res) => res.json())
-            //     .then((d) => {
-            //       localStorage.setItem("jwttoken", d.token);
-            //     //   userSaveToDb(email,name)
-            //     });
-             
+                fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(userData),
+                })
+                  .then((res) => res.json())
+                  .then((d) => {
+                    localStorage.setItem("jwttoken", d.token);
+                    userSaveToDb(email,name,role,imgUrl)
+                  });
             })
             .catch((err) => {
-
               toast.error(err.message);
             });
-        
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-    
-      
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+
+      } else {
+        toast.error('error while uplaod image')
+      }
+    })
+    .catch((err) => console.log(err))
   };
 
-    // eslint-disable-next-line no-unused-vars
-    const userSaveToDb = (email,name) => {
-          fetch(`${process.env.REACT_APP_API_URL2}/user`,{
-            method:"POST",
-            headers:{
-              "content-type":"application/json"
-            },
-            body:JSON.stringify({userEmail:email,
-            userName:name})
-          })
-          .then(res => res.json())
-          .then(data => {
-            navigate("/");
-          })
-          .catch(er => toast.error(er))
-    }
+  const userSaveToDb = (email, name,role,imgUrl) => {
+    fetch(`${process.env.REACT_APP_API_URL2}/register`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ userEmail: email, userName: name,userImg:imgUrl,role:role}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        navigate("/");
+      })
+      .catch((er) => toast.error(er));
+  };
 
   return (
     <div className="container mx-auto">
@@ -125,14 +153,27 @@ export default function Register() {
                 />
 
                 <label className="label">
-                  <span className="label-text">img url</span>
+                  <span className="label-text">choose image</span>
                 </label>
-                <input
-                  name="imgurl"
-                  type="text"
-                  placeholder="img url"
-                  className="input input-bordered"
-                />
+                <div className="form-control w-full max-w-xs">
+                  <input
+                    type="file"
+                    name="img"
+                    onChange={handleUplaodImg}
+                    className="file-input file-input-bordered w-full max-w-xs"
+                    accept=".png, .jpg, .jpeg"
+                  />
+                </div>
+                <label className="label">
+                  <span className="label-text">Role</span>
+                </label>
+                <select
+                  name="role"
+                  className="select select-primary w-full max-w-xs"
+                >
+                  <option value="buyer">buyer</option>
+                  <option value="seller">seller</option>
+                </select>
 
                 <label className="label">
                   <NavLink
@@ -144,7 +185,11 @@ export default function Register() {
                 </label>
               </div>
               <div className="form-control mt-4">
-                <button disabled={isLoading} type="submit" className="btn btn-primary">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="btn btn-primary"
+                >
                   Register
                 </button>
               </div>

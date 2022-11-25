@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut, updateProfile } from "firebase/auth"
 import React, { useEffect, useState } from "react"
 import { app } from "../firebase/firebase.init"
   //create context
@@ -22,8 +22,14 @@ export default function AuthContext({children}) {
       return updateProfile(auth.currentUser, { displayName: name, photoURL });
     };
 
+     // logout functionality
+  const logOut = () => {
+    setIsLoading(true)
+    return signOut(auth);
+  };
 
-const value={signUp,user,isLoading,updateProfileNameImg}
+
+const value={signUp,user,isLoading,updateProfileNameImg,logOut}
 
 
       useEffect(() => {
