@@ -8,6 +8,7 @@ import {
   useMatch,
   useNavigate
 } from "react-router-dom";
+import logo from "../../assests/img/attachment_109048124.png";
 
 import { authContext } from "../../authentication/AuthContext";
 import "./navbar.css";
@@ -59,7 +60,7 @@ export default function Navbar() {
               <img
                 onClick={() => setActiveMenu("home")}
                 className="logo cursor-pointer"
-                src=""
+                src={logo}
                 alt="logo"
               />
             </NavLink>

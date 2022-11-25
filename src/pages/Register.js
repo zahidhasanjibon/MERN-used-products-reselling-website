@@ -4,8 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../authentication/AuthContext";
 
 export default function Register() {
-  // const [imgPreview, setImgPreview] = useState("");
-  // eslint-disable-next-line no-unused-vars
   const [preview, setPreview] = useState("");
 
   const { signUp, updateProfileNameImg, isLoading, setIsLoading } =
@@ -29,7 +27,6 @@ export default function Register() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-
     const form = e.target;
     const email = form.email.value;
     const name = form.name.value;
@@ -49,10 +46,8 @@ export default function Register() {
     })
     .then(res => res.json())
     .then((d) => {
-        
       if(d.success){
-
-        const imgUrl = d?.url
+        const imgUrl = d.data?.url
         signUp(email, password)
         .then(() => {
           form.reset();
@@ -89,11 +84,11 @@ export default function Register() {
         toast.error('error while uplaod image')
       }
     })
-    .catch((err) => console.log(err))
+    .catch((err) => toast.error(err))
   };
 
   const userSaveToDb = (email, name,role,imgUrl) => {
-    fetch(`${process.env.REACT_APP_API_URL2}/register`, {
+    fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -102,7 +97,12 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
-        navigate("/");
+        if(data.acknowledged){
+          toast.success('user Registration successfully')
+          navigate("/");
+        } else {
+          toast.error("error in server side while create user")
+        }
       })
       .catch((er) => toast.error(er));
   };
@@ -156,13 +156,27 @@ export default function Register() {
                   <span className="label-text">choose image</span>
                 </label>
                 <div className="form-control w-full max-w-xs">
-                  <input
+                <div className="avatar items-center">
+                  {
+                    preview && (
+                       <div className="w-24 rounded">
+                 <img src={preview} alt="" />
+              </div>
+                    )
+                  }
+             
+              <input
                     type="file"
                     name="img"
                     onChange={handleUplaodImg}
                     className="file-input file-input-bordered w-full max-w-xs"
                     accept=".png, .jpg, .jpeg"
+                    required
                   />
+
+            </div>
+
+                
                 </div>
                 <label className="label">
                   <span className="label-text">Role</span>

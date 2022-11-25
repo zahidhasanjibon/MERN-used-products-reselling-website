@@ -4,6 +4,7 @@ import Main from "../layout/Main";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PublicRoute from "../routes/Publicrouter";
 
 
 const router = createBrowserRouter([
@@ -16,11 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path:"/login",
-        element:<Login />
+        element:<PublicRoute><Login /></PublicRoute>
       },
       {
         path:"/register",
-        element:<Register />
+        element:<PublicRoute><Register /></PublicRoute>
       }
     
     

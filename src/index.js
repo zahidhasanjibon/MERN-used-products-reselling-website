@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Toaster } from 'react-hot-toast';
 import App from './App';
 import AuthContext from './authentication/AuthContext';
 import './index.css';
@@ -10,6 +11,9 @@ root.render(
   <React.StrictMode>
     <AuthContext>
       <App />
+      <div>
+        <Toaster />
+      </div>
     </AuthContext>
   </React.StrictMode>
 );
