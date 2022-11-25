@@ -9,7 +9,7 @@
 //   const { user, logOut } = useContext(authContext);
 //   const navigate = useNavigate();
 
-//   const { data: myAppointments = [],isLoading } = useQuery({
+//   const { data: myOrders = [],isLoading } = useQuery({
 //     queryKey: ["mybooking", user?.email],
 //     queryFn: async () => {
 //       const jwttoken = localStorage.getItem("jwttoken");

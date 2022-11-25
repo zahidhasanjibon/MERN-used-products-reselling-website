@@ -1,52 +1,53 @@
+
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import { authContext } from "../../authentication/AuthContext";
 
-export default function BookingModal({ productInfo}) {
-
-
+export default function BookingModal({ bookingInfo,setBookingInfo}) {
 
   const { user, } = useContext(authContext);
-    //   date = format(date, "PP")
+  const {name,originalPrice,imgUrl} = bookingInfo || {}
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const buyerPhone = form.phone.value;
+    const buyerMeetingLocation = form.location.value;
 
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const form = e.target;
-//     const patientName = form.name.value;
-//     const patientEmail = form.email.value;
-//     const patientPhone = form.phone.value;
-//     const appointmentTime = form.slot.value;
+    const formData = {
+      productName: name,
+      productPrice:originalPrice,
+      productImg:imgUrl,
+      buyerMeetingLocation,
+        buyerName:user.displayName,buyerEmail:user.email,
+        buyerPhone
+    };
 
-//     const formData = {
-//       treatmentName: treatment.name,
-//       appointMentDate: date,
-//       appointmentTime,
-//       patientName,
-//       patientEmail,
-//       patientPhone,
-//       price:treatment.price
-//     };
-//     fetch(`${process.env.REACT_APP_API_URL2}/booking`, {
-//       method: "POST",
-//       headers: {
-//         "Content-type": "application/json",
-//       },
-//       body: JSON.stringify(formData),
-//     })
-//       .then((res) => res.json())
-//       .then((result) => {
-//         form.reset();
-//         setTreatment(null);
-//         if (result?.acknowledged) {
-//           toast.success("appointment booking successfully");
-//           refetch()
-//         } else {
-//           toast.error(result.message)
-//         }
-//       })
-//       .catch((err) => toast.error("appointment booking failed"));
-//   };
-        const {name,originalPrice} =productInfo || {}
+    fetch(`${process.env.REACT_APP_API_URL}/booking`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        form.reset();
+        setBookingInfo(null);
+        if (result?.acknowledged) {
+          toast.success(`${name} booking successfully`);
+        } else {
+          toast.error(result.message)
+        }
+      })
+      .catch((err) =>{
+        console.log(err);
+        toast.error(" booking failed")
+      });
+  };
+      
 
   return (
     <div>
@@ -60,7 +61,7 @@ export default function BookingModal({ productInfo}) {
             ✕
           </label>
           <h3 className="text-lg font-bold text-center">{name}</h3>
-          <form >
+          <form onSubmit={handleSubmit}>
           
             <input
               name="name"

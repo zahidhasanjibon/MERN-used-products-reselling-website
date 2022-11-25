@@ -9,7 +9,6 @@ export default function CategoryDetails() {
   const[bookingInfo,setBookingInfo] = useState(null)
 
   const { name } = useParams();
-  console.log(bookingInfo);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/products/${name}`)
@@ -63,7 +62,7 @@ export default function CategoryDetails() {
         </div>
       </div>
 
-            {bookingInfo && <BookingModal productInfo = {bookingInfo} />}
+            {bookingInfo && <BookingModal bookingInfo = {bookingInfo} setBookingInfo={setBookingInfo} />}
 
 
     </div>
