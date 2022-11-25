@@ -9,7 +9,7 @@ const auth = getAuth(app)
 export default function AuthContext({children}) {
 
       const [user,setUser] = useState({})
-      const [isLoading,setIsLoading] = useState(false)
+      const [isLoading,setIsLoading] = useState(true)
 
 
     const signUp  = (email,password) => {

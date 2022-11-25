@@ -5,6 +5,7 @@ import CategoryDetails from "../pages/CategoryDetails";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "../routes/Publicrouter";
 
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/category/:name",
-        element:<CategoryDetails />
+        element:<PrivateRoute><CategoryDetails /></PrivateRoute>
       }
     
     
