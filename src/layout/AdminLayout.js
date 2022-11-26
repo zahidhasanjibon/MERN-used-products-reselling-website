@@ -27,6 +27,7 @@ export default function AdminLayout() {
       {roleName === 'seller' && <li><Link to="/dashboard/addproduct">Add Product</Link></li>}
       {roleName === 'admin' && <li><Link to="/dashboard/sellers">All Sellers</Link></li>}
       {roleName === 'admin' && <li><Link to="/dashboard/buyers">All Buyers</Link></li>}
+      {roleName === 'admin' && <li><Link to="/dashboard/report">Reported Products</Link></li>}
     </ul>
   
   </div>

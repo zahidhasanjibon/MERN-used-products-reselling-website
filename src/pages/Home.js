@@ -1,10 +1,15 @@
 import React from "react";
+import useTitle from "../component/hook/useTitle";
 import AdveriseSection from "../component/sections/advertise/AdveriseSection";
 import BannerSection from "../component/sections/banner/BannerSection";
 import HeroSection from "../component/sections/banner/HeroSection";
 import CategorySection from "../component/sections/category/CategorySection";
 
 export default function Home() {
+
+
+    useTitle("home")
+
   return (
     <div className="container mx-auto">
       <div className="flex px-8">

@@ -1,8 +1,24 @@
 
 
-export default function ProductCard({productInfo,setProductInfo}) {
+export default function ProductCard({productInfo,setProductInfo,refetch}) {
 
-        const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name} = productInfo || {}
+        const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report} = productInfo || {}
+
+
+  const handleReport = (productId) => {
+
+      fetch(`${process.env.REACT_APP_API_URL}/product/report/${productId}`,{
+        method:"PUT"
+      })    
+      .then(res => res.json())
+      .then(d => {
+        console.log(d);
+        refetch()
+      })
+      .catch((err => console.log(err)))
+
+  }
+
 
   return (
     <div className="service text-center shadow-lg" key={_id}>
@@ -20,9 +36,10 @@ export default function ProductCard({productInfo,setProductInfo}) {
       <p>year of use : {yearOfUse}</p>
       <p>post : {timeWhenPost}</p>
       <p>seller : {sellerName}</p>
+      {!report && <button onClick={() => handleReport(_id)} className="btn btn-primary btn-xs">report</button>}
+      {report && <button className="btn btn-primary btn-xs">reported</button>}
     </div>
 
-    <p className="text-blue-600 font-semibold text-2xl">"ffdfsd"</p>
     <div className="mt-2">
     <label htmlFor="booking-modal" className="btn btn-primary btn-sm" onClick={() => setProductInfo(productInfo)} >Book Now</label>
     </div>

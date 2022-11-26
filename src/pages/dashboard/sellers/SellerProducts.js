@@ -62,7 +62,6 @@ export default function SellerProducts() {
   if (isLoading) {
     return (
       <div className="h-[70vh] text-center">
-        {" "}
         <SpinnerCircular color="blue" style={{ display: "inline" }} />
       </div>
     );

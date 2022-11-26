@@ -52,6 +52,20 @@ export default function AllSellers() {
       
   };
 
+  const handleDelete = (userId) => {
+    fetch(`${process.env.REACT_APP_API_URL}/user/delete/${userId}`,{
+      method:"DELETE"
+    })
+    .then(res => res.json())
+    .then(d => {
+      console.log(d);
+      refetch()
+    })
+  }
+
+
+
+
   if (isLoading) {
     return (
       <div className="h-[70vh] text-center">
@@ -114,7 +128,7 @@ export default function AllSellers() {
                       )}
                     </td>
                     <th>
-                      <button className="btn btn-primary btn-sm mr-6">
+                      <button onClick={() => handleDelete(seller._id)} className="btn btn-primary btn-sm mr-6">
                         Delete
                       </button>
                       {!seller.verify ? (
