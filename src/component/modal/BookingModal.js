@@ -7,7 +7,8 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
 
   const { user, } = useContext(authContext);
   const {name,originalPrice,imgUrl} = bookingInfo || {}
-  
+
+  console.log(bookingInfo);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +66,7 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
           
             <input
               name="name"
-              defaultValue={`user Name  : ${user?.displayName}`}
+              value={`user Name  : ${user?.displayName}`}
               disabled
               type="text"
               required
@@ -74,7 +75,7 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
             />
             <input
               name="email"
-              defaultValue={`user email  : ${user?.email}`}
+              value={`user email  : ${user?.email}`}
               type="email"
               disabled
               required
@@ -83,7 +84,7 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
             />
             <input
               name="itemName"
-              defaultValue={`product name  : ${name}`}
+              value={`product name  : ${name}`}
               type="text"
               disabled
               required
@@ -92,7 +93,7 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
             />
             <input
               name="price"
-              defaultValue={`Price   : ${originalPrice}`}
+              value={`Price   : ${originalPrice}`}
               type="text"
               disabled
               required

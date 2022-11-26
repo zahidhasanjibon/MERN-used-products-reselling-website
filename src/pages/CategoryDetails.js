@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import logo from "../assests/img/chair.png";
 import BookingModal from "../component/modal/BookingModal";
+import ProductCard from "../component/product/ProductCard";
 
 export default function CategoryDetails() {
   const [products, setProducts] = useState([]);
@@ -32,28 +32,7 @@ export default function CategoryDetails() {
 
         {
             products.length > 0 && products.map((d) => (
-                <div className="service text-center shadow-lg" key={d._id}>
-                <div className="inline-block">
-                  <img src={logo} alt="service" className="cursor-pointer" />
-                </div>
-                <div>
-                  <h2 className="text-2xl">Sport car</h2>
-                  <p>location</p>
-                </div>
-    
-                <div className="star-wrapper py-3">
-                  <p>previous price</p>
-                  <p>recent price</p>
-                  <p>year of use</p>
-                  <p>posted time</p>
-                  <p>seller name</p>
-                </div>
-    
-                <p className="text-blue-600 font-semibold text-2xl">"ffdfsd"</p>
-                <div className="mt-2">
-                <label htmlFor="booking-modal" className="btn btn-primary btn-sm" onClick={() => setBookingInfo(d)} >Book Now</label>
-                </div>
-              </div>
+             <ProductCard productInfo={d} setProductInfo ={setBookingInfo}  key={d._id}/>
             ))
         }
          
