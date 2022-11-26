@@ -1,8 +1,9 @@
-
+import toast from "react-hot-toast";
+import { BsCheck } from "react-icons/bs";
 
 export default function ProductCard({productInfo,setProductInfo,refetch}) {
 
-        const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report} = productInfo || {}
+  const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report,sellerVerified} = productInfo || {}
 
 
   const handleReport = (productId) => {
@@ -12,7 +13,7 @@ export default function ProductCard({productInfo,setProductInfo,refetch}) {
       })    
       .then(res => res.json())
       .then(d => {
-        console.log(d);
+        toast.success("product report successfully")
         refetch()
       })
       .catch((err => console.log(err)))
@@ -35,7 +36,10 @@ export default function ProductCard({productInfo,setProductInfo,refetch}) {
       <p>original price : {originalPrice} $</p>
       <p>year of use : {yearOfUse}</p>
       <p>post : {timeWhenPost}</p>
-      <p>seller : {sellerName}</p>
+      <div className="flex items-center justify-center">
+      <span className="pr-2">seller : {sellerName}</span> 
+      {sellerVerified && <span> <BsCheck style={{backgroundColor:"blue",borderRadius:"40%"}} color="white" size={22} /></span>}
+      </div>
       {!report && <button onClick={() => handleReport(_id)} className="btn btn-primary btn-xs">report</button>}
       {report && <button className="btn btn-primary btn-xs">reported</button>}
     </div>

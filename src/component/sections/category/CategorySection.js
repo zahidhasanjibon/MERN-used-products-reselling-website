@@ -1,32 +1,35 @@
+import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function CategorySection() {
 
-    const [allProducts,setAllProducts] = useState([])
+    const [allCategory,setAllcategory] = useState([])
  
     useEffect(() => {
 
-        fetch(`${process.env.REACT_APP_API_URL}/products`)
-        .then(res => res.json())
-        .then(d => {
-            setAllProducts(d)
+        axios.get(`${process.env.REACT_APP_API_URL}/productcategory`)
+        .then( (res) => {
+            
+                setAllcategory(res.data)
         })
-        .catch(err => console.log(err))
+        .catch( (error) => {
+          console.log(error);
+        })
 
     },[])
 
-        const categoryMenu = [...new Set(allProducts.map(d => d.category))]
-       
 
   return (
 
          <div className="px-6 py-4">
           <ul>
 
-            {categoryMenu.length > 0 && categoryMenu.map((d,i) => (
-                <li className='my-4' key={i}>
-                    <Link to={`/category/${d}`}>{d}</Link>
+            {allCategory.length > 0 && allCategory.map((d,i) => (
+                <li className='my-4 text-xl text-blue-500 border-b-2 pb-4' key={i}>
+                    <NavLink to={`/category/${d.category}`} className={({ isActive }) =>
+              isActive ? "text-blue-800 font-bold" : undefined
+            } >{d.category}</NavLink>
                 </li>
             ))}
 

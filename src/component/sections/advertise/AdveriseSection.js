@@ -14,8 +14,6 @@ export default function AdveriseSection() {
           })
           .catch((err) => console.log(err));
       },[]);
-        console.log(advertiseProducts);
-
         if(advertiseProducts.length === 0) return <></>
 
 

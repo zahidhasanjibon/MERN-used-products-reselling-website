@@ -114,14 +114,14 @@ export default function SellerProducts() {
                       <br />
                     </td>
                     <td>
-                      {" "}
+                      
                       <p className="font-bold">
                         {product.originalPrice} $
-                      </p>{" "}
+                      </p>
                     </td>
                     <td>
                       <p className="btn btn-secondary btn-xs">
-                        {product.status}{" "}
+                        {product.status}
                       </p>
                     </td>
                     <th className="text-center">

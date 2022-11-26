@@ -45,7 +45,7 @@ export default function AllBuyers() {
     })
     .then(res => res.json())
     .then(d => {
-      console.log(d);
+      toast.success("user deleted successfully")
       refetch()
     })
   }

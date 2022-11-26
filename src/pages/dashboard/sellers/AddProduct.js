@@ -59,7 +59,7 @@ export default function AddProduct() {
     const sellerEmail = user?.email
 
     const prodcutInfo = {
-        name,resalePrice,originalPrice,location,mobile,yearOfUse,condition,category,description,sellerName,sellerEmail
+        name,resalePrice,originalPrice,location,mobile,yearOfUse,condition,category,description,sellerName,sellerEmail,status:"unsold"
     }
 
     const formData = new FormData()

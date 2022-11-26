@@ -39,8 +39,8 @@ export default function AllSellers() {
     },
   });
 
-  const handleVerify = (sellerId) => {
-    fetch(`${process.env.REACT_APP_API_URL}/user/seller/update/${sellerId}`, {
+  const handleVerify = (sellerEmail) => {
+    fetch(`${process.env.REACT_APP_API_URL}/user/seller/update/${sellerEmail}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -58,7 +58,7 @@ export default function AllSellers() {
     })
     .then(res => res.json())
     .then(d => {
-      console.log(d);
+      toast.success('user deleted successfully')
       refetch()
     })
   }
@@ -133,7 +133,7 @@ export default function AllSellers() {
                       </button>
                       {!seller.verify ? (
                         <button
-                          onClick={() => handleVerify(seller._id)}
+                          onClick={() => handleVerify(seller.userEmail)}
                           className="btn btn-success text-white btn-sm"
                         >
                           verify

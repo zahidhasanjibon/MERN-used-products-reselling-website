@@ -12,12 +12,11 @@ export default function Home() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex px-8">
+      <div className="flex px-8 mt-8">
         <div className="w-1/5 shadow-lg">
-          <h1 className="p-4 bg-orange-500 text-xl text-center text-white">
-            SHOP BY CATEGORIES
+        <h1 className="p-4 bg-orange-500 text-xl text-center text-white">
+          CATEGORIES
           </h1>
-
           <CategorySection />
         </div>
 
