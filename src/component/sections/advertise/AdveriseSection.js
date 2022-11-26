@@ -23,7 +23,7 @@ export default function AdveriseSection() {
             <div className='w-4/5 grid gap-12 grid-cols-4 mx-auto py-12'>
                   {
             advertiseProducts.length > 0 && advertiseProducts.map((d) => (
-           <ProductCard productInfo={d} setProductInfo={setBookingInfo} />
+           <ProductCard productInfo={d} setProductInfo={setBookingInfo} key={d._id} />
             ))
         }
 
