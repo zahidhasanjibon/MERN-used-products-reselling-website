@@ -59,6 +59,31 @@ export default function SellerProducts() {
       });
   };
 
+
+    const handleDelete = (productId) => {
+
+      fetch(
+        `${process.env.REACT_APP_API_URL}/delete/product/${productId}`,
+        {
+          method: "DELETE",
+        }
+      )
+        .then((res) => res.json())
+        .then((d) => {
+          toast.success("product deleted successfully")
+          refetch();
+        });
+
+
+    }
+
+
+
+
+
+
+
+
   if (isLoading) {
     return (
       <div className="h-[70vh] text-center">
@@ -125,7 +150,7 @@ export default function SellerProducts() {
                       </p>
                     </td>
                     <th className="text-center">
-                      <button className="btn btn-primary btn-sm mr-4">
+                      <button onClick={() => handleDelete(product._id)} className="btn btn-primary btn-sm mr-4">
                         Delete
                       </button>
                       {product.status === "unsold" && !product.advertise ? (

@@ -18,7 +18,7 @@ export default function CategorySection() {
         })
 
     },[])
-
+     
 
   return (
 
@@ -27,7 +27,7 @@ export default function CategorySection() {
 
             {allCategory.length > 0 && allCategory.map((d,i) => (
                 <li className='my-4 text-xl text-blue-500 border-b-2 pb-4' key={i}>
-                    <NavLink to={`/category/${d.category}`} className={({ isActive }) =>
+                    <NavLink to={`/category/${d._id}`} className={({ isActive }) =>
               isActive ? "text-blue-800 font-bold" : undefined
             } >{d.category}</NavLink>
                 </li>

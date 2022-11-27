@@ -63,7 +63,7 @@ export default function ReportedItems() {
 
   return (
     <div className="container mx-auto mb-12">
-      <h2 className="text-2xl my-6 text-center">All buyers</h2>
+      <h2 className="text-2xl my-6 text-center">All reported Products</h2>
 
       <div className="px-6">
         <div className="overflow-x-auto w-full">

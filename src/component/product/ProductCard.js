@@ -40,7 +40,7 @@ export default function ProductCard({productInfo,setProductInfo,refetch}) {
       <span className="pr-2">seller : {sellerName}</span> 
       {sellerVerified && <span> <BsCheck style={{backgroundColor:"blue",borderRadius:"40%"}} color="white" size={22} /></span>}
       </div>
-      {!report && <button onClick={() => handleReport(_id)} className="btn btn-primary btn-xs">report</button>}
+      {!report &&  <button onClick={() => handleReport(_id)} className="btn btn-primary btn-xs">report</button>}
       {report && <button className="btn btn-primary btn-xs">reported</button>}
     </div>
 

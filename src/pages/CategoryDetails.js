@@ -10,7 +10,7 @@ export default function CategoryDetails() {
 
   const[bookingInfo,setBookingInfo] = useState(null)
 
-  const { name } = useParams();
+  const { id } = useParams();
 
 
 
@@ -19,10 +19,10 @@ export default function CategoryDetails() {
         isLoading,
         refetch,
       } = useQuery({
-        queryKey: ["categoriesproducts",name],
+        queryKey: ["categoriesproducts",id],
         queryFn: async () => {
           const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/products/${name}`
+            `${process.env.REACT_APP_API_URL}/products/${id}`
           );
           const data = await res.json();
           return data;
@@ -53,7 +53,7 @@ export default function CategoryDetails() {
 
         
         <div className="w-4/5 ">
-        <h3 className="text-center text-3xl font-bold text-blue-500">Products of {products[0] ? products[0]?.category : "no product"}</h3>
+        <h3 className="text-center text-3xl font-bold text-blue-500">{products.length > 0 ? "Products" : "No Products Found"}</h3>
           <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pl-24 pt-12">
 
               {

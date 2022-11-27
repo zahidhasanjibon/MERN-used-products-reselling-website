@@ -2,6 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AdminLayout from "../layout/AdminLayout";
 import Main from "../layout/Main";
+import Blog from "../pages/Blog";
 import CategoryDetails from "../pages/CategoryDetails";
 import AllBuyers from "../pages/dashboard/admin/AllBuyers";
 import AllSellers from "../pages/dashboard/admin/AllSellers";
@@ -14,8 +15,10 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/notFound/NotFound";
 import Register from "../pages/Register";
+import AdminRoute from "../routes/AdminRoute";
 import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "../routes/Publicrouter";
+import SellerRoute from "../routes/SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -35,8 +38,12 @@ const router = createBrowserRouter([
         element:<PublicRoute><Register /></PublicRoute>
       },
       {
-        path:"/category/:name",
+        path:"/category/:id",
         element:<PrivateRoute><CategoryDetails /></PrivateRoute>
+      },
+      {
+        path:"/blog",
+        element:<Blog />
       },
       {path:"*",
     element:<NotFound />}
@@ -47,28 +54,27 @@ const router = createBrowserRouter([
       element:<AdminLayout />,
       errorElement:<ErrorPage />,
       children:[
-
         {path:"/dashboard/orders",
         element:<MyOrders />,
       },
       {path:"/dashboard/products",
-      element:<SellerProducts />
+      element:<SellerRoute><SellerProducts /></SellerRoute>
     },
     {
       path:"/dashboard/addproduct",
-      element:<AddProduct />
+      element:<SellerRoute><AddProduct /></SellerRoute>
     },
     {
       path:"/dashboard/sellers",
-      element:<AllSellers />
+      element:<AdminRoute><AllSellers /></AdminRoute>
     },
     {
       path:"/dashboard/buyers",
-      element:<AllBuyers />
+      element:<AdminRoute><AllBuyers /></AdminRoute>
     },
     {
       path:"/dashboard/report",
-      element:<ReportedItems />
+      element:<AdminRoute><ReportedItems /></AdminRoute>
     }
       ]
     },

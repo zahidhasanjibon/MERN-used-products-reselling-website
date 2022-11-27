@@ -11,16 +11,16 @@ import {
 import logo from "../../assests/img/attachment_109048124.png";
 
 import { authContext } from "../../authentication/AuthContext";
-import UseCheckUserRole from "../hook/useCheckuserRole";
 import "./navbar.css";
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("home");
+  const [roleName, setRoleName] = useState("");
+
 
   const { user, isLoading, logOut } = useContext(authContext);
-
-  const [roleName] = UseCheckUserRole(user?.email)
+  const email = user?.email
 
   const { pathname } = useLocation();
   const match = useMatch(pathname.slice(1));
@@ -31,6 +31,25 @@ export default function Navbar() {
       }
     }
   }, [match]);
+
+    useEffect(() => {
+            let setTime = setTimeout(() => {
+              if(email){
+                fetch(`${process.env.REACT_APP_API_URL}/user/checkrole/${email}`)
+                .then(res => res.json())
+                .then(data => {setRoleName(data.role)}
+              )
+            }
+            },1500)
+
+              return () => {
+                clearTimeout(setTime)
+              }
+
+
+    },[email])
+
+
 
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -68,7 +87,7 @@ export default function Navbar() {
   return (
     <div className="container mx-auto">
       <div className="w-11/12 mx-auto pt-2">
-        <nav className="navbar-nav grid items-center grid-cols-5">
+        <nav className="navbar-nav grid items-center grid-cols-5 ">
           <div
             onClick={() => setShowMenu(false)}
             className="brand md:col-span-1 col-span-4"
@@ -143,8 +162,8 @@ export default function Navbar() {
               <>
                 {user?.uid ? (
                   <>
-                    <div className="tooltip">
-                      <span className="tooltip-text">
+                    <div className="flex items-center">
+                      <span className="mr-4 text-xl">
                         {user?.displayName || "not/available"}
                       </span>
                       <img

@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authContext } from "../../../authentication/AuthContext";
 
 export default function AddProduct() {
   const [preview, setPreview] = useState("");
   const [categories, setcategories] = useState([]);
+  const [isLoading,setIsLoading] = useState(false)
 
 
   const {user} = useContext(authContext)
@@ -52,14 +53,16 @@ export default function AddProduct() {
     const mobile = form.phone.value
     const yearOfUse = form.purchaseyear.value
     const condition = form.condition.value
-    const category = form.category.value
+    const categoryId = form.category.value
     const description = form.desc.value
 
     const sellerName = user?.displayName
     const sellerEmail = user?.email
 
+    setIsLoading(true)
+
     const prodcutInfo = {
-        name,resalePrice,originalPrice,location,mobile,yearOfUse,condition,category,description,sellerName,sellerEmail,status:"unsold"
+        name,resalePrice,originalPrice,location,mobile,yearOfUse,condition,categoryId,description,sellerName,sellerEmail,status:"unsold"
     }
 
     const formData = new FormData()
@@ -73,7 +76,6 @@ export default function AddProduct() {
     })
     .then(res => res.json())
     .then((d) => {
-      console.log(d);
       if(d.success){
         const imgUrl = d.data?.url
         prodcutInfo.imgUrl = imgUrl
@@ -82,7 +84,10 @@ export default function AddProduct() {
         toast.error('error while uplaod image')
       }
     })
-    .catch((err) => toast.error(err))
+    .catch((err) => {
+      toast.error(err)
+      setIsLoading(false)
+    })
   };
 
 
@@ -99,6 +104,8 @@ export default function AddProduct() {
                     toast.success("Product Create Successfully")
                     navigate("/dashboard/products")
                 })
+                .catch(err => console.log(err))
+                .finally(() => setIsLoading(false))
 
 
         }
@@ -215,7 +222,7 @@ export default function AddProduct() {
                 >
                     {
                         categories.length > 0 && categories.map((cat) =>(
-                            <option key={cat._id} value={cat.category}>{cat.category}</option>
+                            <option key={cat._id} value={cat._id}>{cat.category}</option>
                         ) )
                     }
                
@@ -226,20 +233,10 @@ export default function AddProduct() {
 
 
                   </div>
-
-
-                <label className="label">
-                  <NavLink
-                    to="/login"
-                    className="label-text-alt link link-hover"
-                  >
-                    have an account?
-                  </NavLink>
-                </label>
               </div>
               <div className="form-control mt-4">
                 <button
-                
+                  disabled={isLoading}
                   type="submit"
                   className="btn btn-primary"
                 >
