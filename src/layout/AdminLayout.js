@@ -9,7 +9,6 @@ export default function AdminLayout() {
 
   const {user} = useContext(authContext)
   const [roleName] = UseCheckUserRole(user?.email)
-  console.log(roleName);
   return (
         <div>
                 <Navbar></Navbar>

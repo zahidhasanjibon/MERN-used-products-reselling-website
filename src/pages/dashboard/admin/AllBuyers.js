@@ -57,7 +57,7 @@ export default function AllBuyers() {
   if (isLoading) {
     return <div className="h-[70vh] text-center"> <SpinnerCircular color="blue" style={{ display: "inline" }} /></div>;
 }
-    console.log(allBuyers);
+
   return (
     <div className="container mx-auto mb-12">
       <h2 className="text-2xl my-6 text-center">All buyers</h2>

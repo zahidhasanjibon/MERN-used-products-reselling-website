@@ -41,6 +41,9 @@ export default function AllSellers() {
 
   const handleVerify = (sellerEmail) => {
     fetch(`${process.env.REACT_APP_API_URL}/user/seller/update/${sellerEmail}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("jwttoken")}`,
+      },
       method: "PUT",
     })
       .then((res) => res.json())
@@ -122,7 +125,7 @@ export default function AllSellers() {
                     <td>{seller.userEmail}</td>
                     <td>
                       {seller.verify ? (
-                        <p className="btn btn-xs btn-primary">verified</p>
+                        <p className="btn btn-xs btn-secondary">verified</p>
                       ) : (
                         <p className="btn btn-xs btn-secondary">unverified</p>
                       )}

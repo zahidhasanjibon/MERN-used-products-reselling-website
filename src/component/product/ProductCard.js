@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { BsCheck } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
+import { authContext } from "../../authentication/AuthContext";
 
 export default function ProductCard({productInfo,setProductInfo,refetch}) {
+
+  const {user} = useContext(authContext)
 
   const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report,sellerVerified} = productInfo || {}
 
@@ -45,7 +50,9 @@ export default function ProductCard({productInfo,setProductInfo,refetch}) {
       {report && <button className="btn btn-primary btn-xs">reported</button>}
     </div>
   <div className="mt-2">
-    <label htmlFor="booking-modal" className="btn btn-primary btn-sm" onClick={() => setProductInfo(productInfo)} >Book Now</label>
+   {user?.uid ? <label htmlFor="booking-modal" className="btn btn-primary btn-sm" onClick={() => setProductInfo(productInfo)} >Book Now</label> : (
+    <NavLink to="/login" className="btn btn-primary btn-sm">Log in to book</NavLink>
+   )}
     </div>
     </div>
     
