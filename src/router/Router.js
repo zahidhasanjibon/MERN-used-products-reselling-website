@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import AdminLayout from "../layout/AdminLayout";
 import Main from "../layout/Main";
@@ -8,6 +7,7 @@ import AllBuyers from "../pages/dashboard/admin/AllBuyers";
 import AllSellers from "../pages/dashboard/admin/AllSellers";
 import ReportedItems from "../pages/dashboard/admin/ReportedItems";
 import MyOrders from "../pages/dashboard/buyers/MyOrders";
+import Payment from "../pages/dashboard/buyers/Payment";
 import AddProduct from "../pages/dashboard/sellers/AddProduct";
 import SellerProducts from "../pages/dashboard/sellers/SellerProducts";
 import ErrorPage from "../pages/error/ErrorPage";
@@ -20,68 +20,100 @@ import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "../routes/Publicrouter";
 import SellerRoute from "../routes/SellerRoute";
 
-
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element:<Main />,
-      children:[{
-        path:"/",
-        element:<Home />
+  {
+    path: "/",
+    element: <Main />,
+    errorElement:<ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
       },
       {
-        path:"/login",
-        element:<PublicRoute><Login /></PublicRoute>
+        path: "/login",
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
-        path:"/register",
-        element:<PublicRoute><Register /></PublicRoute>
+        path: "/register",
+        element: (
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        ),
       },
       {
-        path:"/category/:id",
-        element:<PrivateRoute><CategoryDetails /></PrivateRoute>
+        path: "/category/:id",
+        element: (
+          <PrivateRoute>
+            <CategoryDetails />
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/blog",
-        element:<Blog />
+        path: "/blog",
+        element: <Blog />,
       },
-      {path:"*",
-    element:<NotFound />}
-    ]
-    },
-    {
-      path:"/dashboard",
-      element:<AdminLayout />,
-      errorElement:<ErrorPage />,
-      children:[
-        {path:"/dashboard/orders",
-        element:<MyOrders />,
+      { path: "*", element: <NotFound /> },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <AdminLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "/dashboard/orders", element: <MyOrders /> },
+      {path:"/dashboard/payment/:id",element:<Payment />},
+      {
+        path: "/dashboard/products",
+        element: (
+          <SellerRoute>
+            <SellerProducts />
+          </SellerRoute>
+        ),
       },
-      {path:"/dashboard/products",
-      element:<SellerRoute><SellerProducts /></SellerRoute>
-    },
-    {
-      path:"/dashboard/addproduct",
-      element:<SellerRoute><AddProduct /></SellerRoute>
-    },
-    {
-      path:"/dashboard/sellers",
-      element:<AdminRoute><AllSellers /></AdminRoute>
-    },
-    {
-      path:"/dashboard/buyers",
-      element:<AdminRoute><AllBuyers /></AdminRoute>
-    },
-    {
-      path:"/dashboard/report",
-      element:<AdminRoute><ReportedItems /></AdminRoute>
-    }
-      ]
-    },
-    {
-      path:"*",
-      element:<NotFound />
-    }
-  ]);
+      {
+        path: "/dashboard/addproduct",
+        element: (
+          <SellerRoute>
+            <AddProduct />
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/sellers",
+        element: (
+          <AdminRoute>
+            <AllSellers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/buyers",
+        element: (
+          <AdminRoute>
+            <AllBuyers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/report",
+        element: (
+          <AdminRoute>
+            <ReportedItems />
+          </AdminRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+]);
 
-  export default router
+export default router;

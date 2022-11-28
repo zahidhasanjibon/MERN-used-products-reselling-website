@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
 import { authContext } from "../../../authentication/AuthContext";
 
@@ -9,13 +9,12 @@ export default function MyOrders() {
   const { user, logOut } = useContext(authContext);
   const navigate = useNavigate();
 
-  // eslint-disable-next-line no-unused-vars
   const { data: myOrders = [],isLoading } = useQuery({
     queryKey: ["myorders", user?.email],
     queryFn: async () => {
       const jwttoken = localStorage.getItem("jwttoken");
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/orders?email=${user?.email}`,
+        `${process.env.REACT_APP_API_URL}/bookings?email=${user?.email}`,
         {
           headers: {
             authorization: `bearer ${jwttoken}`,
@@ -42,7 +41,7 @@ export default function MyOrders() {
   if (isLoading) {
     return <div className="h-[70vh] text-center"> <SpinnerCircular color="blue" style={{ display: "inline" }} /></div>;
 }
-console.log(myOrders);
+
   return (
     <div className="container mx-auto mb-12">
       <h2 className="text-2xl my-6 text-center">My Orders</h2>
@@ -60,6 +59,7 @@ console.log(myOrders);
         <th>Product Image</th>
         <th>Product Name</th>
         <th>Price</th>
+        <th>Meeting Location</th>
         <th>Payment</th>
       </tr>
     </thead>
@@ -87,8 +87,11 @@ console.log(myOrders);
              
             </td>
             <td>{order.productPrice}</td>
+            <td>{order.buyerMeetingLocation}</td>
             <th>
-              <button className="btn btn-primary btn-sm">Pay</button>
+             {order?.status === 'unpaid' ?  <NavLink to={`/dashboard/payment/${order._id}`} className="btn btn-primary btn-sm">Pay</NavLink>
+              : (<button className="btn btn-primary btn-sm" disabled>paid</button>) 
+            }
             </th>
           </tr>
         ))

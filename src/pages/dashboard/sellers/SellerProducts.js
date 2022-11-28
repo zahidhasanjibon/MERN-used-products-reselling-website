@@ -19,7 +19,7 @@ export default function SellerProducts() {
       if (!user?.email) return [];
       const jwttoken = localStorage.getItem("jwttoken");
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/sellerproducts?email=${user?.email}`,
+        `${process.env.REACT_APP_API_URL}/seller/products?email=${user?.email}`,
         {
           headers: {
             authorization: `bearer ${jwttoken}`,

@@ -6,9 +6,7 @@ import { authContext } from "../../authentication/AuthContext";
 export default function BookingModal({ bookingInfo,setBookingInfo}) {
 
   const { user, } = useContext(authContext);
-  const {name,originalPrice,imgUrl} = bookingInfo || {}
-
-  console.log(bookingInfo);
+  const {name,originalPrice,imgUrl,_id} = bookingInfo || {}
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,12 +16,14 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
 
 
     const formData = {
+      productId:_id,
       productName: name,
       productPrice:originalPrice,
       productImg:imgUrl,
       buyerMeetingLocation,
         buyerName:user.displayName,buyerEmail:user.email,
-        buyerPhone
+        buyerPhone,
+        status:"unpaid" 
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/booking`, {

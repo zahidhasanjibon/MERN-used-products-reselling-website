@@ -1,13 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
-import { authContext } from "../../../authentication/AuthContext";
 
 export default function ReportedItems() {
-  const { logOut } = useContext(authContext);
-  const navigate = useNavigate();
+
 
   const {
     data: reportedItems = [],
@@ -25,18 +21,6 @@ export default function ReportedItems() {
           },
         }
       );
-      if (res.status === 401 || res.status === 403) {
-        toast.error("unauthorized access");
-        logOut()
-          .then(() => {
-            localStorage.removeItem("jwttoken");
-            navigate("/login");
-          })
-          .catch((err) => {
-            toast.error(err);
-          });
-      }
-
       const data = await res.json();
       return data;
     },
@@ -60,6 +44,8 @@ export default function ReportedItems() {
       </div>
     );
   }
+
+  if(reportedItems.length === 0) return <h4 className="text-3xl text-center">NO REPORTED PRODUCTS</h4>
 
   return (
     <div className="container mx-auto mb-12">

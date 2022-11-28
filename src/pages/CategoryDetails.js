@@ -12,8 +12,6 @@ export default function CategoryDetails() {
 
   const { id } = useParams();
 
-
-
       const {
         data: products = [],
         isLoading,

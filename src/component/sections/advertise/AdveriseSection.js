@@ -7,7 +7,12 @@ export default function AdveriseSection() {
     const[advertiseProducts,setAddvertiseProducts] = useState([])
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/advertise/products`)
+      const jwttoken = localStorage.getItem("jwttoken");
+        fetch(`${process.env.REACT_APP_API_URL}/advertise/products`, {
+          headers: {
+            authorization: `bearer ${jwttoken}`,
+          },
+        })
           .then((res) => res.json())
           .then((d) => {
             setAddvertiseProducts(d);
@@ -17,9 +22,12 @@ export default function AdveriseSection() {
         if(advertiseProducts.length === 0) return <></>
 
 
-  return (
-            <div className='w-4/5 grid gap-12 grid-cols-4 mx-auto py-12'>
-                  {
+  return (  
+    <div>
+      <h5 className='text-center text-4xl mt-8'>Advertise Products</h5>
+ <div className='w-4/5 grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto py-12'>
+
+                    {
             advertiseProducts.length > 0 && advertiseProducts.map((d) => (
            <ProductCard productInfo={d} setProductInfo={setBookingInfo} key={d._id} />
             ))
@@ -28,5 +36,8 @@ export default function AdveriseSection() {
               {bookingInfo && <BookingModal bookingInfo = {bookingInfo} setBookingInfo={setBookingInfo} />}
 
             </div>
+
+    </div>
+           
   )
 }
