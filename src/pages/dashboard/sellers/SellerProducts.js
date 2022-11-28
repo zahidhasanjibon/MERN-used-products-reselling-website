@@ -141,7 +141,7 @@ export default function SellerProducts() {
                     <td>
                       
                       <p className="font-bold">
-                        {product.originalPrice} $
+                        {product.resalePrice} $
                       </p>
                     </td>
                     <td>

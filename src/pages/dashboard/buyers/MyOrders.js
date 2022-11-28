@@ -86,7 +86,7 @@ export default function MyOrders() {
               <br/>
              
             </td>
-            <td>{order.productPrice}</td>
+            <td>{order.productPrice} $</td>
             <td>{order.buyerMeetingLocation}</td>
             <th>
              {order?.status === 'unpaid' ?  <NavLink to={`/dashboard/payment/${order._id}`} className="btn btn-primary btn-sm">Pay</NavLink>

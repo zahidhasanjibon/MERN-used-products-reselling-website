@@ -6,13 +6,13 @@ export default function HeroSection() {
   return (
 
     <div className="px-8">
- <div className='flex flex-wrap gap-12 justify-center bg-white shadow-lg p-8 mt-12'>
+ <div className='flex lg:flex-nowrap flex-wrap gap-12 justify-center bg-white drop-shadow-2xl p-8 mt-12'>
 
         
     <div className='w-11/12 text-center'>
       <div className="flex">
           <div>
-          <TbTruckDelivery size={40} color="pink"/>
+          <TbTruckDelivery size={40} color="pink" />
           </div>
           <div className="ml-6">
             <h4 className="text-start font-semibold">Free Delivery</h4>
@@ -27,8 +27,8 @@ export default function HeroSection() {
           < AiOutlineShoppingCart size={40} color="pink"/>
           </div>
           <div className="ml-6">
-            <h4 className="text-start font-semibold">Free Delivery</h4>
-            <p className="text-pink-500">Free Shipping Worlwide</p>
+            <h4 className="text-start font-semibold">Unlimited Cart</h4>
+            <p className="text-pink-500">Collect Worlwide</p>
           </div>
       </div>
     </div>
@@ -38,8 +38,8 @@ export default function HeroSection() {
           <FaHandHoldingUsd size={40} color="pink"/>
           </div>
           <div className="ml-6">
-            <h4 className="text-start font-semibold">Free Delivery</h4>
-            <p className="text-pink-400">Free Shipping Worlwide</p>
+            <h4 className="text-start font-semibold">Easy Transfer</h4>
+            <p className="text-pink-400">Money easy Worlwide</p>
           </div>
       </div>
     </div>
@@ -49,8 +49,8 @@ export default function HeroSection() {
           <AiOutlineIdcard size={40} color="pink"/>
           </div>
           <div className="ml-6">
-            <h4 className="text-start font-semibold">Free Delivery</h4>
-            <p className="text-pink-400">Free Shipping Worlwide</p>
+            <h4 className="text-start font-semibold">Card Supported</h4>
+            <p className="text-pink-400">All over Worlwide</p>
           </div>
       </div>
     </div>
@@ -60,8 +60,8 @@ export default function HeroSection() {
           <AiFillCodeSandboxCircle size={40} color="pink"/>
           </div>
           <div className="ml-6">
-            <h4 className="text-start font-semibold">Free Delivery</h4>
-            <p className="text-pink-400">Free Shipping Worlwide</p>
+            <h4 className="text-start font-semibold">Exclusive Delivery</h4>
+            <p className="text-pink-400 text-start">Double Bonus</p>
           </div>
       </div>
     </div>

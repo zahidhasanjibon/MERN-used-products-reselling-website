@@ -38,11 +38,11 @@ export default function CategoryDetails() {
 
 
   return (
-    <div className="conatiner mx-auto px-12 mt-8">
+    <div className="conatiner mx-auto px-12 mt-8 pb-12">
      
 
-      <div className="flex">
-        <div className="w-1/5">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-1/5">
         <h1 className="p-4 bg-orange-500 text-xl text-center text-white">
           CATEGORIES
           </h1>
@@ -50,9 +50,9 @@ export default function CategoryDetails() {
         </div>
 
         
-        <div className="w-4/5 ">
+        <div className="w-full md:w-4/5 ">
         <h3 className="text-center text-3xl font-bold text-blue-500">{products.length > 0 ? "Products" : "No Products Found"}</h3>
-          <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 pl-24 pt-12">
+          <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:pl-24 pt-8">
 
               {
             products.length > 0 && products.map((d) => (

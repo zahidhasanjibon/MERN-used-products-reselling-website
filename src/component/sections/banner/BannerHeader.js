@@ -9,46 +9,46 @@ import "./banner.css";
 
 export default function BannerHeader() {
   return (
-    <section class="category-section">
-      <div class="category-wrapper">
-        <div class="left-image">
-          <div class="left-first">
-            <div class="relative-ji hidden-ji same-size margin">
+    <section className="category-section">
+      <div className="category-wrapper">
+        <div className="left-image">
+          <div className="left-first">
+            <div className="relative-ji hidden-ji same-size margin">
               <img
                 src={e4}
                 alt="sale"
-                class="width trans"
+                className="width trans"
               />
-              <div class="absolute-ji center cate-name-style bal">SALE</div>
+              <div className="absolute-ji center cate-name-style bal">SALE</div>
             </div>
-            <div class="relative-ji hidden-ji same-size margin">
-              <img src={e5} class="width trans" />
-              <div class="absolute-ji center cate-name-style">NEW</div>
+            <div className="relative-ji hidden-ji same-size margin">
+              <img src={e5} className="width trans" />
+              <div className="absolute-ji center cate-name-style">NEW</div>
             </div>
           </div>
-          <div class="left-second">
-            <div class="relative-ji hidden-ji mid-size margin">
-              <img src={e7} class="width trans" />
-              <div class="absolute-ji center cate-name-style">WOMEN</div>
+          <div className="left-second">
+            <div className="relative-ji hidden-ji mid-size margin">
+              <img src={e7} className="width trans" />
+              <div className="absolute-ji center cate-name-style">WOMEN</div>
             </div>
           </div>
         </div>
 
-        <div class="right-image">
-          <div class="right-first">
-            <div class="relative-ji hidden-ji same-size margin">
-              <img src={e9} class="width trans" />
-              <div class="absolute-ji center cate-name-style">MEN</div>
+        <div className="right-image">
+          <div className="right-first">
+            <div className="relative-ji hidden-ji same-size margin">
+              <img src={e9} className="width trans" />
+              <div className="absolute-ji center cate-name-style">MEN</div>
             </div>
-            <div class="relative-ji hidden-ji same-size margin">
-              <img src={e3} class="width trans" />
-              <div class="absolute-ji center cate-name-style">ACCeSSORIES</div>
+            <div className="relative-ji hidden-ji same-size margin">
+              <img src={e3} className="width trans" />
+              <div className="absolute-ji center cate-name-style">ACCeSSORIES</div>
             </div>
           </div>
-          <div class="right-second">
-            <div class="relative-ji hidden-ji large-size margin">
-              <img src={e6} class="width trans" />
-              <div class="absolute-ji center cate-name-style">SHOE</div>
+          <div className="right-second">
+            <div className="relative-ji hidden-ji large-size margin">
+              <img src={e6} className="width trans" />
+              <div className="absolute-ji center cate-name-style">SHOE</div>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
       .then((result) => {
         form.reset();
         setBookingInfo(null);
-        if (result?.acknowledged) {
+        if (result?.success) {
           toast.success(`${name} booking successfully`);
         } else {
           toast.error(result.message)
@@ -112,6 +112,13 @@ export default function BookingModal({ bookingInfo,setBookingInfo}) {
               type="text"
               required
               placeholder="meeting loction"
+              className="input input-bordered input-info w-full my-2"
+            />
+            <input
+              name="lastly"
+              type="text"
+              
+              placeholder="Lastly"
               className="input input-bordered input-info w-full my-2"
             />
             <input

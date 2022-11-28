@@ -113,8 +113,8 @@ export default function AddProduct() {
 
   return (
     <div className="container mx-auto">
-      <div className="hero h-[89vh] bg-base-200">
-        <div className="hero-content flex-col w-[370px]">
+      <div className="hero  bg-base-200">
+        <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
             <h1 className="text-3xl font-bold">Create Product!</h1>
           </div>
