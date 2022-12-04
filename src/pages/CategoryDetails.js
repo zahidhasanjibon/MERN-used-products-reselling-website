@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { SpinnerCircular } from "spinners-react";
+import Loader from "../component/loader/Loader";
+
 import BookingModal from "../component/modal/BookingModal";
 import ProductCard from "../component/product/ProductCard";
 import CategorySection from "../component/sections/category/CategorySection";
@@ -29,9 +30,7 @@ export default function CategoryDetails() {
 
       if (isLoading) {
         return (
-          <div className="h-[70vh] text-center">
-            <SpinnerCircular color="blue" style={{ display: "inline" }} />
-          </div>
+        <Loader />
         );
       }
 

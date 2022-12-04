@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { SpinnerCircular } from "spinners-react";
 import { authContext } from "../../../authentication/AuthContext";
+import Loader from "../../../component/loader/Loader";
 
 export default function SellerProducts() {
   const { logOut, user } = useContext(authContext);
@@ -86,9 +86,7 @@ export default function SellerProducts() {
 
   if (isLoading) {
     return (
-      <div className="h-[70vh] text-center">
-        <SpinnerCircular color="blue" style={{ display: "inline" }} />
-      </div>
+      <Loader />
     );
   }
 

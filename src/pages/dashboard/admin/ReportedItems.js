@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { SpinnerCircular } from "spinners-react";
+import Loader from "../../../component/loader/Loader";
 
 export default function ReportedItems() {
 
@@ -39,9 +39,7 @@ export default function ReportedItems() {
 
   if (isLoading) {
     return (
-      <div className="h-[70vh] text-center">
-        <SpinnerCircular color="blue" style={{ display: "inline" }} />
-      </div>
+     <Loader />
     );
   }
 

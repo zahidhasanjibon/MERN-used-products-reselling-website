@@ -84,6 +84,8 @@ export default function Navbar() {
         return "/dashboard/products"
       } else if(roleName === 'admin'){
         return "/dashboard/sellers"
+      } else {
+        return "/login"
       }
     }
 
@@ -143,8 +145,7 @@ export default function Navbar() {
                 </Link>
               </li>
           
-              {
-                user?.uid && (
+        
                   <li onClick={() => handleActiveMenu("dashboard")}>
                 <Link
                   to={roleBasesDashboardPath}
@@ -153,9 +154,9 @@ export default function Navbar() {
                   Dashboard
                 </Link>
               </li>
-                )
+                
 
-              }
+          
             </ul>
           </div>
 

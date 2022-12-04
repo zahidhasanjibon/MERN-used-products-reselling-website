@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { NavLink } from "react-router-dom";
 import e2 from "../../../assests/img/cat1.png";
 import e4 from "../../../assests/img/cat3.png";
@@ -7,12 +9,15 @@ import e5 from "../../../assests/img/cat4.png";
 import e3 from "../../../assests/img/cat6.png";
 import e1 from "../../../assests/img/cat7.png";
 
+
 export default function CategorySection() {
   const [allCategory, setAllcategory] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const imgArr = [e1, e2, e3, e4, e5];
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(`${process.env.REACT_APP_API_URL}/productcategory`)
       .then((res) => {
@@ -22,13 +27,20 @@ export default function CategorySection() {
         });
 
         setAllcategory(updatedCategory);
+        setLoading(false)
       })
       .catch((error) => {
-        console.log(error);
+        setLoading(false)
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+  if(loading){
+    return <div style={{padding:"15px"}}><Skeleton count={5} style={{marginBottom:"30px"}} /></div>
+ 
+  }
 
   return (
     <div className="px-6 py-4">

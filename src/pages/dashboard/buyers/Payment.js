@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SpinnerCircular } from 'spinners-react';
 import { authContext } from '../../../authentication/AuthContext';
+import Loader from "../../../component/loader/Loader";
 import CheckoutForm from "./CheckoutForm";
 
 export default function Payment() {
@@ -46,9 +46,7 @@ export default function Payment() {
       
   if (isLoading) {
     return (
-      <div className="h-[70vh] text-center">
-        <SpinnerCircular color="blue" style={{ display: "inline" }} />
-      </div>
+    <Loader />
     );
   }
 

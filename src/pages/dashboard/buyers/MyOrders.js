@@ -2,9 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
-import { SpinnerCircular } from "spinners-react";
 import { authContext } from "../../../authentication/AuthContext";
-
+import Loader from "../../../component/loader/Loader";
 export default function MyOrders() {
   const { user, logOut } = useContext(authContext);
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ export default function MyOrders() {
   });
 
   if (isLoading) {
-    return <div className="h-[70vh] text-center"> <SpinnerCircular color="blue" style={{ display: "inline" }} /></div>;
+    return <Loader />
 }
 
     if(myOrders.length === 0) {
