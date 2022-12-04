@@ -16,11 +16,13 @@ export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [activeMenu, setActiveMenu] = useState("home");
-  const [roleName, setRoleName] = useState("");
+  // const [roleName, setRoleName] = useState("");
 
 
-  const { user, isLoading, logOut } = useContext(authContext);
+  const { user, isLoading, logOut,roleName,checkUserRole} = useContext(authContext);
   const email = user?.email
+   
+
 
   const { pathname } = useLocation();
   const match = useMatch(pathname.slice(1));
@@ -31,22 +33,27 @@ export default function Navbar() {
       }
     }
   }, [match]);
+    console.log(roleName);
+    // useEffect(() => {
+    //         let setTime = setTimeout(() => {
+    //           if(email){
+    //             fetch(`${process.env.REACT_APP_API_URL}/user/checkrole/${email}`)
+    //             .then(res => res.json())
+    //             .then(data => {setRoleName(data.role)}
+    //           )
+    //         }
+    //         },1500)
+
+    //           return () => {
+    //             clearTimeout(setTime)
+    //           }
+
+
+    // },[email])
 
     useEffect(() => {
-            let setTime = setTimeout(() => {
-              if(email){
-                fetch(`${process.env.REACT_APP_API_URL}/user/checkrole/${email}`)
-                .then(res => res.json())
-                .then(data => {setRoleName(data.role)}
-              )
-            }
-            },1500)
-
-              return () => {
-                clearTimeout(setTime)
-              }
-
-
+      checkUserRole(email)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[email])
 
 
@@ -81,7 +88,6 @@ export default function Navbar() {
     }
 
     const roleBasesDashboardPath  = chooseDashboardPath()
-
 
 
   return (

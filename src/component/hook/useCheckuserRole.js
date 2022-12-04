@@ -9,6 +9,8 @@ const UseCheckUserRole = (email) => {
             .then(res => res.json())
             .then(data => {setRoleName(data.role)
                setIsRoleLoading(false)})
+        } else {
+            setIsRoleLoading(false)
         }
     },[email])
 

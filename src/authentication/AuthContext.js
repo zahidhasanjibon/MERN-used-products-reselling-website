@@ -10,6 +10,7 @@ export default function AuthContext({children}) {
 
       const [user,setUser] = useState({})
       const [isLoading,setIsLoading] = useState(true)
+      const [roleName,setRoleName] = useState(null)
 
 
     const signUp  = (email,password) => {
@@ -44,8 +45,17 @@ export default function AuthContext({children}) {
     };
 
 
+    const checkUserRole = (email) => {
+          fetch(`${process.env.REACT_APP_API_URL}/user/checkrole/${email}`)
+          .then(res => res.json())
+          .then(data => {setRoleName(data.role)})        
+}
 
-const value={signUp,user,isLoading,setIsLoading,updateProfileNameImg,logOut,signIn,loginWithgoogle}
+
+
+
+
+const value={signUp,user,isLoading,setIsLoading,updateProfileNameImg,logOut,signIn,loginWithgoogle,roleName,setRoleName,checkUserRole}
 
 
       useEffect(() => {

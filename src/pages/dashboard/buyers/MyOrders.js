@@ -42,6 +42,12 @@ export default function MyOrders() {
     return <div className="h-[70vh] text-center"> <SpinnerCircular color="blue" style={{ display: "inline" }} /></div>;
 }
 
+    if(myOrders.length === 0) {
+      return <h1 className=" text-lg md:text-4xl text-center mt-8">No Orders found</h1>
+
+    }
+
+
   return (
     <div className="container mx-auto mb-12">
       <h2 className="text-2xl my-6 text-center">My Orders</h2>

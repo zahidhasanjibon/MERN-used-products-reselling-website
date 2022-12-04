@@ -92,10 +92,12 @@ export default function AddProduct() {
 
 
         function saveProductToDb (prodcutInfo) {
+          const jwttoken = localStorage.getItem("jwttoken");
             fetch(`${process.env.REACT_APP_API_URL}/product`,{
                 method:"POST",
                 headers:{
-                    "Content-Type":"application/json"
+                    "Content-Type":"application/json",
+                    authorization: `bearer ${jwttoken}`,
                 },
                 body:JSON.stringify(prodcutInfo)
             })

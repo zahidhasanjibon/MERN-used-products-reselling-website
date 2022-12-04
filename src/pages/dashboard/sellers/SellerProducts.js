@@ -92,6 +92,11 @@ export default function SellerProducts() {
     );
   }
 
+    if(allSellerProducts.length ===0){
+      return <h4 className="text-center text-lg md:text-4xl">No Prodcuts created yet</h4>
+    }
+
+
   return (
     <div className="container mx-auto mb-12">
       <h2 className="text-2xl my-6 text-center">All Products</h2>

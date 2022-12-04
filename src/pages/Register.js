@@ -5,8 +5,7 @@ import { authContext } from "../authentication/AuthContext";
 
 export default function Register() {
   const [preview, setPreview] = useState("");
-
-  const { signUp, updateProfileNameImg, isLoading, setIsLoading } =
+  const { signUp, updateProfileNameImg, isLoading, setIsLoading,checkUserRole} =
     useContext(authContext);
   const navigate = useNavigate();
 
@@ -49,24 +48,23 @@ export default function Register() {
       if(d.success){
         const imgUrl = d.data?.url
         signUp(email, password)
-        .then(() => {
-          form.reset();
+        .then((data) => {
           // update image and name function
           updateProfileNameImg(name,imgUrl)
-            .then((data) => {
-                const userData = { email: data?.user.email };
-
-                fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(userData),
-                })
-                  .then((res) => res.json())
-                  .then((d) => {
-                    localStorage.setItem("jwttoken", d.token);
-                    userSaveToDb(email,name,role,imgUrl)
+          .then(() => {
+            form.reset();
+              const userData = { email: data?.user.email };
+              fetch(`${process.env.REACT_APP_API_URL}/jwtgenerate`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+              })
+              .then((res) => res.json())
+              .then((d) => {
+                localStorage.setItem("jwttoken", d.token);
+                userSaveToDb(email,name,role,imgUrl)
                   });
             })
             .catch((err) => {
@@ -99,6 +97,7 @@ export default function Register() {
       .then((data) => {
         if(data.acknowledged){
           toast.success('user Registration successfully')
+          checkUserRole(email)
           navigate("/");
         } else {
           toast.error("error in server side while create user")

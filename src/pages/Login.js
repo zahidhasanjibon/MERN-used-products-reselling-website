@@ -9,7 +9,7 @@ import { authContext } from "../authentication/AuthContext";
 import UseTitle from "../component/hook/useTitle";
 
 export default function Login() {
-  const { signIn, loginWithgoogle, setIsLoading } = useContext(authContext);
+  const { signIn, loginWithgoogle, setIsLoading ,checkUserRole} = useContext(authContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +43,7 @@ export default function Login() {
           .then((d) => {
             localStorage.setItem("jwttoken", d.token);
             navigate(from, { replace: true });
+            checkUserRole(email)
           });
       })
       .catch((err) => {
@@ -101,10 +102,11 @@ export default function Login() {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify(userData),
     })
       .then((res) => res.json(userData))
       .then((data) => {
+        checkUserRole(email)
         navigate(from, { replace: true });
       })
       .catch((er) => toast.error(er));
