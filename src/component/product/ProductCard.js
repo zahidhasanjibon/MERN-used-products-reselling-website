@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { BsCheck } from "react-icons/bs";
@@ -9,7 +9,7 @@ export default function ProductCard({productInfo,setProductInfo,refetch}) {
 
   const {user} = useContext(authContext)
 
-  const {_id,imgUrl,location,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report,sellerVerified} = productInfo || {}
+  const {_id,imgUrl,resalePrice,originalPrice,yearOfUse,timeWhenPost,sellerName,name,report,sellerVerified} = productInfo || {}
 
 
   const handleReport = (productId) => {

@@ -48,7 +48,7 @@ export default function CategorySection() {
         {allCategory.length > 0 &&
           allCategory.map((d, i) => (
             <li
-              className="flex items-center justify-around my-4 pb-2 text-xl hover:font-bold hover:text-blue-800 text-blue-500 border-b-2"
+              className="flex items-center justify-around my-4 pb-2 text-xl hover:font-bold hover:text-blue-800 text-orange-800 border-b-2"
               key={i}
             >
               <NavLink
