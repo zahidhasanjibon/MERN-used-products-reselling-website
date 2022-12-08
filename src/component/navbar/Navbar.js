@@ -33,7 +33,6 @@ export default function Navbar() {
       }
     }
   }, [match]);
-    console.log(roleName);
     // useEffect(() => {
     //         let setTime = setTimeout(() => {
     //           if(email){

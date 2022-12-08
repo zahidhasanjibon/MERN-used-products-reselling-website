@@ -15,6 +15,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/notFound/NotFound";
 import Register from "../pages/Register";
+import SearchProducts from "../pages/SearchProducts";
 import AdminRoute from "../routes/AdminRoute";
 import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "../routes/Publicrouter";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/search/products",
+        element: <SearchProducts />,
       },
       { path: "*", element: <NotFound /> },
     ],

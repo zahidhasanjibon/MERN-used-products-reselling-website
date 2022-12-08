@@ -1,32 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Loader from "../component/loader/Loader";
 
 import BookingModal from "../component/modal/BookingModal";
 import ProductCard from "../component/product/ProductCard";
 import CategorySection from "../component/sections/category/CategorySection";
 
-export default function CategoryDetails() {
+export default function SearchProducts() {
   const [bookingInfo, setBookingInfo] = useState(null);
-
-  const { id } = useParams();
-
+    const location = useLocation()
   const {
     data: products = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["categoriesproducts", id],
+    queryKey: ["searchproducts"],
     queryFn: async () => {
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/products/${id}`
+        `${process.env.REACT_APP_API_URL}/search/products?search=${location.state?.searchText}`
       );
       const data = await res.json();
       return data;
     },
   });
-
   if (isLoading) {
     return <Loader />;
   }
