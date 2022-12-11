@@ -17,7 +17,7 @@ export default function Home() {
         
       <div className="flex flex-col md:flex-row px-8 mt-2">
         <div className="w-full md:w-1/5 shadow-lg">
-        <h1 className="p-4 bg-orange-500 text-xl text-center text-white">
+        <h1 className="p-4 bg-orange-500 text-sm md:text-lg lg:text-xl text-center text-white">
           CATEGORIES
           </h1>
           <CategorySection />

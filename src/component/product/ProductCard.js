@@ -85,77 +85,25 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
                       <h2 class="text-2xl mr-auto cursor-pointer text-gray-700 hover:text-purple-500 truncate ">
                         {name}
                       </h2>
-                      <div class="flex items-center bg-green-400 text-white text-xs px-2 py-1 ml-3 rounded-lg">
-                        INSTOCK
-                      </div>
+                    
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
- <div class="text-2xl text-orange-700 font-semibold mt-1">
+ <div class="text-2xl text-gray-700 font-semibold mt-1">
                     $ {originalPrice}
                   </div>
                   <div className="flex items-center"> 
-                   <span className="w-1/2  font-bold text-orange-700">{sellerName}</span>
-  <span className="ml-4"> {sellerVerified && <BsCheck style={{backgroundColor:"orange",borderRadius:"40%"}} color="white" size={22} /> }</span>
+                   <span className="w-1/2  font-bold text-gray-700">{sellerName}</span>
+  <span className="ml-4"> {sellerVerified && <BsCheck style={{backgroundColor:"gray",borderRadius:"40%"}} color="white" size={22} /> }</span>
                   </div>
 
                   </div>
                  
-                  <div class="lg:flex  py-4  text-sm text-gray-600">
-                    <div class="flex-1 inline-flex items-center  mb-3">
-                      <div class="w-full flex-none text-sm flex items-center text-gray-600">
-                        <ul class="flex flex-row justify-center items-center space-x-2">
-                          <li class="">
-                            <span class="block p-1 border-2 border-gray-900 hover:border-blue-600 rounded-full transition ease-in duration-300">
-                              <a
-                                href=""
-                                class="block w-3 h-3 bg-blue-600 rounded-full"
-                              ></a>
-                            </span>
-                          </li>
-                          <li class="">
-                            <span class="block p-1 border-2 border-gray-900 hover:border-yellow-400 rounded-full transition ease-in duration-300">
-                              <a
-                                href=""
-                                class="block w-3 h-3  bg-yellow-400 rounded-full"
-                              ></a>
-                            </span>
-                          </li>
-                          <li class="">
-                            <span class="block p-1 border-2 border-gray-900 hover:border-red-500 rounded-full transition ease-in duration-300">
-                              <a
-                                href=""
-                                class="block w-3 h-3  bg-red-500 rounded-full"
-                              ></a>
-                            </span>
-                          </li>
-                          <li class="">
-                            <span class="block p-1 border-2 border-gray-900 hover:border-green-500 rounded-full transition ease-in duration-300">
-                              <a
-                                href=""
-                                class="block w-3 h-3  bg-green-500 rounded-full"
-                              ></a>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="flex-1 inline-flex items-center justify-end mb-3">
-                      <span class="text-secondary whitespace-nowrap mr-3">
-                        Size
-                      </span>
-                      <div class="cursor-pointer text-gray-400 ">
-                        <span class="hover:text-purple-500 p-1 py-0">S</span>
-                        <span class="hover:text-purple-500 p-1 py-0">M</span>
-                        <span class="hover:text-purple-500 p-1 py-0">L</span>
-                        <span class="hover:text-purple-500 p-1 py-0">XL</span>
-                      </div>
-                    </div>
-                  </div>
+               
               
-                  <div class="flex space-x-2 text-sm font-medium justify-between items-center">
-                    <div>
-                      <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-orange-500 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
+                  <div class="flex space-x-2 text-sm font-medium justify-between items-center mt-3">
+                    <div className="">
+                      <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-600 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                         {user?.uid ? (
                           <label
                             htmlFor="booking-modal"
@@ -179,13 +127,13 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
                       {!report && (
                         <button
                           onClick={() => handleReport(_id)}
-                          className="btn border-orange-400 btn-outline btn-xs "
+                          className="btn border-gray-400 btn-outline btn-xs "
                         >
                           report
                         </button>
                       )}
                       {report && (
-                        <button className="btn bg-orange-300 border-0 text-white btn-xs">
+                        <button className="btn bg-gray-300 border-0 text-black btn-xs">
                           reported
                         </button>
                       )}

@@ -19,28 +19,27 @@ export default function BannerSection() {
             clickable: true,
           }}
           modules={[Navigation, Pagination]}
-          className="h-[510px]"
+          className="h-[200px] md:h-[510px]"
           spaceBetween={30}
         >
           <SwiperSlide>
             <div
-              className="hero-wrapper"
+              className="hero-wrapper md:h-[400px]"
               style={{
-                height: "400px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
               <div className=" flex-col gap-4 md:flex-row  items-center">
-                <div className="w-1/2 absolute top-1/2 transform  translate-y-24 md:-translate-y-1/2 left-4 md:left-20 lg:left-44">
+                <div className="w-1/2 absolute top-1/2 transform  -translate-y-32 md:-translate-y-2/3 left-16 md:left-20 lg:left-44">
                   <h1 className="text-lg md:text-3xl text-red-500">
                     New Arrival
                   </h1>
                   <h5 className="py-4 text-xl md:text-3xl lg:text-5xl">
                     Laptop for Winter <br></br> 2022
                   </h5>
-                  <button className="btn btn-sm md:btn-lg btn-secondary btn-outline">
+                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline">
                     See Products{" "}
                   </button>
                 </div>
@@ -61,14 +60,14 @@ export default function BannerSection() {
               }}
             >
               <div className=" flex-col gap-4 md:flex-row   items-center">
-                <div className="w-1/2 absolute top-1/2 transform  translate-y-24 md:-translate-y-1/2 left-4 md:left-20 lg:left-44">
+                <div className="w-1/2 absolute top-1/2 transform  -translate-y-32 md:-translate-y-2/3 left-16 md:left-20 lg:left-44">
                   <h1 className="text-lg md:text-3xl text-red-500">
                     New Arrival
                   </h1>
                   <h5 className="py-4 text-xl md:text-3xl lg:text-5xl">
                     Laptop for Winter <br></br> 2022
                   </h5>
-                  <button className="btn btn-sm md:btn-lg btn-secondary btn-outline">
+                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline">
                     See Products{" "}
                   </button>
                 </div>

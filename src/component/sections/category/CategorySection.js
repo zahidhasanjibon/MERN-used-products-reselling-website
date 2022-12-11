@@ -43,12 +43,12 @@ export default function CategorySection() {
   }
 
   return (
-    <div className="px-6 py-4">
+    <div className="px-2 py-4">
       <ul>
         {allCategory.length > 0 &&
           allCategory.map((d, i) => (
             <li
-              className="flex items-center justify-around my-4 pb-2 text-xl hover:font-bold hover:text-blue-800 text-orange-800 border-b-2"
+              className="flex items-center justify-around my-4 pb-2 text-sm lg:text-lg hover:font-bold hover:text-blue-800 text-orange-800 border-b-2"
               key={i}
             >
               <NavLink
@@ -60,8 +60,8 @@ export default function CategorySection() {
                 {d.category}
               </NavLink>
               <div className="avatar">
-                <div className="w-16 rounded">
-                  <img className="w-12 h-12" src={d.img} alt="" />
+                <div className="w-12 rounded">
+                  <img className="w-18 h-8 rounded-full" src={d.img} alt="" />
                 </div>
               </div>
             </li>
