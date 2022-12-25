@@ -39,7 +39,7 @@ export default function BannerSection() {
                   <h5 className="py-4 text-xl md:text-3xl lg:text-5xl">
                     Laptop for Winter <br></br> 2022
                   </h5>
-                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline">
+                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline lg:mt-4">
                     See Products{" "}
                   </button>
                 </div>
@@ -67,7 +67,7 @@ export default function BannerSection() {
                   <h5 className="py-4 text-xl md:text-3xl lg:text-5xl">
                     Laptop for Winter <br></br> 2022
                   </h5>
-                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline">
+                  <button className="btn btn-sm lg:btn-lg btn-secondary btn-outline lg:mt-4">
                     See Products{" "}
                   </button>
                 </div>

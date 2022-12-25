@@ -36,7 +36,7 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
   return (
     <div class="">
       <div class="flex flex-col items-center justify-center ">
-        <div class="w-96">
+        <div class="w-72">
           <div class="max-w-md w-full shadow-lg rounded-xl p-4">
             <div class="flex flex-col ">
               <div class="">
@@ -89,11 +89,11 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
- <div class="text-2xl text-gray-700 font-semibold mt-1">
+ <div class="text-xl text-gray-700 mt-1">
                     $ {originalPrice}
                   </div>
                   <div className="flex items-center"> 
-                   <span className="w-1/2  font-bold text-gray-700">{sellerName}</span>
+                   <span className="w-1/2   text-gray-700">{sellerName}</span>
   <span className="ml-4"> {sellerVerified && <BsCheck style={{backgroundColor:"gray",borderRadius:"40%"}} color="white" size={22} /> }</span>
                   </div>
 
@@ -103,11 +103,11 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
               
                   <div class="flex space-x-2 text-sm font-medium justify-between items-center mt-3">
                     <div className="">
-                      <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-600 px-5 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
+                      <button class="cursor-pointer transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-600 px-3 py-1 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-purple-600 ">
                         {user?.uid ? (
                           <label
                             htmlFor="booking-modal"
-                            className=""
+                            className="cursor-pointer"
                             onClick={() => setProductInfo(productInfo)}
                           >
                             Book Now
@@ -115,7 +115,7 @@ export default function ProductCard({ productInfo, setProductInfo, refetch }) {
                         ) : (
                           <NavLink
                             to="/login"
-                            className="btn btn-primary btn-sm"
+                            className="cursor-pointer"
                           >
                             Log in to book
                           </NavLink>

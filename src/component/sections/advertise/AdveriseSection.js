@@ -25,7 +25,7 @@ export default function AdveriseSection() {
   return (  
     <div>
       <h5 className='text-center text-4xl mt-8'>Advertise Products</h5>
- <div className='w-full lg:w-4/5 grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-auto py-12'>
+ <div className='w-full lg:w-4/5 grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto py-12'>
 
                     {
             advertiseProducts.length > 0 && advertiseProducts.map((d) => (

@@ -124,7 +124,7 @@ export default function Navbar() {
               showMenu ? "col-start-1 col-span-4" : "hidden"
             } menu-bar py-4 md:py-0 bg-white ml-4 relative z-10 md:ml-0  lg:col-span-2 xl:col-span-3 md:col-span-2  md:block`}
           >
-            <ul className="md:flex md:justify-around xl:px-24">
+            <ul className="md:flex md:justify-around xl:px-24 text-orange-900">
               <li onClick={() => handleActiveMenu("home")}>
                 <Link
                   className={`${activeMenu === "home" ? "active" : undefined}`}
@@ -169,7 +169,7 @@ export default function Navbar() {
                 {user?.uid ? (
                   <>
                     <div className="flex items-center">
-                      <span className="mr-4 text-xl">
+                      <span className="mr-4 text-sm">
                         {user?.displayName || "not/available"}
                       </span>
                       <img
@@ -183,7 +183,7 @@ export default function Navbar() {
                     </div>
 
                     <button
-                      className="btn btn-primary btn-outline btn-sm"
+                      className="btn btn-primary btn-outline btn-xs"
                       onClick={handleLogOut}
                     >
                       logout

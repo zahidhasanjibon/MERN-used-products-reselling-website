@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { NavLink } from "react-router-dom";
-import e2 from "../../../assests/img/cat1.png";
+import { default as e2, default as e6 } from "../../../assests/img/cat1.png";
 import e4 from "../../../assests/img/cat3.png";
 import e5 from "../../../assests/img/cat4.png";
 import e3 from "../../../assests/img/cat6.png";
@@ -14,7 +14,7 @@ export default function CategorySection() {
   const [allCategory, setAllcategory] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const imgArr = [e1, e2, e3, e4, e5];
+  const imgArr = [e1, e2, e3, e4, e5,e6];
 
   useEffect(() => {
     setLoading(true)

@@ -35,8 +35,8 @@ export default function SearchSection() {
               <AiOutlinePhone color="orange" size={20} />
             </div>
             <div className="ml-4 hidden lg:block">
-              <h6 className="font-bold text-sm lg:text-xl">+8801478666</h6>
-              <p className="text-gray-400 pl-2">Support 7 /24</p>
+              <h6 className="font-bold text-sm lg:text-lg">+8801478666</h6>
+              <p className="text-gray-400 pl-2">Support 7/24</p>
             </div>
           </div>
         </div>
